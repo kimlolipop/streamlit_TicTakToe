@@ -80,13 +80,13 @@ def checkDiagonals(board):
             for i in range(len(row)):
                 check_list = []
                 for j in range(0,_win_point):
-                    if i >= (len(board)-_win_point):
+                    if i >= (len(board)-_win_point-1):
                         if j == 0:
                             check_list.append(row[i+j])
                         else:
                             check_list.append(board[idx+j][i-j])
                             
-                            
+#                 st.write(check_list)            
                 count = Counter(check_list)
 
                 if count[O] == _win_point:
@@ -135,7 +135,7 @@ def show():
 
     # Initialize state.
     if "board" not in st.session_state:
-        st.session_state.board = np.full((10, 10), space, dtype=str)
+        st.session_state.board = np.full((8, 8), space, dtype=str)
         st.session_state.next_player = X
         st.session_state.winner = None
         
@@ -144,7 +144,7 @@ def show():
     
     # Show one button for each field.
     for i, row in enumerate(st.session_state.board):
-        cols = st.beta_columns([0.1, 0.1, 0.1, 0.1,0.1,0.1,0.1,0.1,0.1
+        cols = st.beta_columns([0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1
                                 ,0.07, 0.07])
         for j, field in enumerate(row):
             cols[j].button(
